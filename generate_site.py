@@ -53,21 +53,17 @@ def generate_thumbnails(args, image_filepath, image, thumbnail_filepath, exif, l
         split_image = image.split('.')
         thumbnail = split_image[0] + '_thumbnail.' + split_image[1]
         if args.logit == True:
-            logging.info("Thumbnail for %s exists. Regenerating", image_filepath + "/" + image)
+            logging.info("Thumbnail %s exists. Regenerating", image_filepath + "/" + image)
         generate_thumbnail(image_filepath + "/" + image, thumbnail_filepath + "/" + thumbnail, exif)
     else:
-        if not os.path.exists(image_filepath+ "/" + image):
+        if os.path.exists(image_filepath+ "/" + image):
             if args.logit == True:
-                logging.info("Thumbnail for %s already exists. Skipping", image_filepath + "/" + image)
-            else:
-                pass
+                logging.info("Thumbnail %s already exists. Skipping", image_filepath + "/" + image)
         else:
             if args.logit == True:
-                logging.info("Thumbnail for %s does not exist. Generating", image_filepath + "/" + image)
+                logging.info("Thumbnail %s does not exist. Generating", image_filepath + "/" + image)
             split_image = image.split('.')
             thumbnail = split_image[0] + '_thumbnail.' + split_image[1]
-            if args.logit == True:
-                logging.info("Thumbnail for %s does not exist. Generating", thumbnail_filepath + "/" + thumbnail)
             generate_thumbnail(image_filepath + "/" + image, thumbnail_filepath + "/" + thumbnail, exif)
 
 def generate_thumbnail(image, thumbnail, exif_data):
