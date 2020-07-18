@@ -2,12 +2,10 @@
 import argparse
 import os
 from PIL import Image
-from PIL.ExifTags import TAGS
 import string
 
 def arguments():
-    parser = argparse.ArgumentParser(
-            description="Code generator for https://pics.daemo.nz")
+    parser = argparse.ArgumentParser(description="Code generator for https://pics.daemo.nz")
     parser.add_argument('-t', '--thumbnails',
                         dest='thumbnails',
                         action='store_true',
