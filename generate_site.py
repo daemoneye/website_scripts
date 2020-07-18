@@ -76,7 +76,7 @@ def generate_thumbnail(image, thumbnail, exif_data):
     im.save(thumbnail, "JPEG")
 
 def generate_index(images_directory, exif_data, args, logger):
-    HEADER = "<DOCTYPE HTML>\n\n<html>\n<head>\n<title>Daemoneye's Photos</title>\n<link rel=\"stylesheet\" href=\"styles.css\"<head>\n"
+    HEADER = "<!DOCTYPE HTML>\n\n<html>\n<head>\n<title>Daemoneye's Photos</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n"
     FOOTER = "</html>"
     BODY = "<body>\n"
     # iterate through all sub directories in a given directory
@@ -85,7 +85,7 @@ def generate_index(images_directory, exif_data, args, logger):
         if "thumbnail" not in subdir and not subdir.endswith("html"):
             for each in os.listdir(subdir):
                 if "jpg" not in each and "JPG" not in each and "thumbnails" not in each and "html" not in each and "css" not in each:
-                    BODY += "<div class=\"title\">\n<h2>" + each + "</h2>\n<hr />\n</div>"
+                    BODY += "<div class=\"title\">\n<h2>" + each + "</h2>\n<hr />\n</div>\n"
                     thumbnails = os.listdir(subdir + "/" + each + "/thumbnails")
                     html_files = os.listdir(subdir + "/" + each + "/html")
                     thumbnails.sort()
