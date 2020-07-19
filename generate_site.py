@@ -113,8 +113,11 @@ def main():
     args = arguments()
 
     # setup logging
-    logging.basicConfig(filename='generate_site.log',level=logging.DEBUG)
-    logger = logging.getLogger(__name__)
+    if args.logit == True:
+        logging.basicConfig(filename='generate_site.log',level=logging.DEBUG)
+        logger = logging.getLogger(__name__)
+    else:
+        logger = None
 
     # iterate through all sub directories in a given directory
     for subdir, dirs, files in os.walk(image_filepath):
