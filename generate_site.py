@@ -55,7 +55,8 @@ def generate_thumbnails(args, image_filepath, image, thumbnail_filepath, exif, l
             logging.info("Thumbnail %s exists. Regenerating", image_filepath + "/" + image)
         generate_thumbnail(image_filepath + "/" + image, thumbnail_filepath + "/" + thumbnail, exif)
     else:
-        if os.path.exists(image_filepath+ "/" + image):
+        thumbnail = image.split('.')[0] + "_thumbnail.JPG"
+        if os.path.exists(thumbnail_filepath+ "/" + thumbnail):
             if args.logit == True:
                 logging.info("Thumbnail %s already exists. Skipping", image_filepath + "/" + image)
         else:
@@ -71,7 +72,6 @@ def generate_thumbnail(image, thumbnail, exif_data):
     MAX_SIZE = (int(width/10), int(height/10))
 
     im.thumbnail(MAX_SIZE)
-    im = im.rotate(360 - set_orientation(exif_data), expand=True)
     im.save(thumbnail, "JPEG")
 
 def generate_index(images_directory, exif_data, args, logger):
