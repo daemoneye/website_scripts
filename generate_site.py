@@ -18,7 +18,6 @@ def arguments():
     return parser.parse_args()
 
 def generate_html_page(args, image_filepath, image, html_filepath, exif, logger):
-    orientation = (set_orientation(exif))
     # What exif data we want to display
     exif_info_list = ['File_Name', 'Camera_Model_Name', 'Aperture', 'ISO', 'Shutter_Speed', 'Lens_ID', 'Focal_Length', 'Shooting_Mode']
     
@@ -108,13 +107,6 @@ def obtain_exif(filename):
         value = each_data[1].strip()
         info[key] = value
     return info
-
-def set_orientation(exif_data):
-    rotate = exif_data["Orientation"]
-    Rotate = 0
-    if "Rotate" in rotate:
-        Rotate = rotate.split(' ')[1]
-    return int(Rotate)
 
 def main():
     image_filepath = "/var/www/html/images"
